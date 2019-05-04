@@ -1,15 +1,7 @@
 
 function cleanForm() {
-    var elements = $('form').elements;
-    var field_type = elements.type.toLowerCase;
-    
-    for (var i in elements) {
-        if (field_type == "text") {
-            elements[i].val("");
-        } else if (field_type == "radio") {
-            elements[i].val("");
-        }
-    }
+    $("#form").find(":input").not(":button", ":submit", ":radio").val("");
+    $("#form").find(":radio").not(":button", ":submit").prop("checked", false);
 };
 
 $("form").on('submit', function(event) {
