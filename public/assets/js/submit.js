@@ -1,6 +1,6 @@
 
 function cleanForm() {
-    $("#form").find(":input").not(":button", ":submit", ":radio").val("");
+    $("#form").find(":text").not(":button", ":submit", ":radio").val("");
     $("#form").find(":radio").not(":button", ":submit").prop("checked", false);
 };
 
