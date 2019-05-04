@@ -1,9 +1,14 @@
 
-function cleanForm(newFriend) {
-    $("#name").val("");
-    $("#photo").val("");
-    for (var i in newFriend.scores) {
-        $("#scores-" + i).val("");
+function cleanForm() {
+    var elements = $('form').elements;
+    var field_type = elements.type.toLowerCase;
+    
+    for (var i in elements) {
+        if (field_type == "text") {
+            elements[i].val("");
+        } else if (field_type == "radio") {
+            elements[i].val("");
+        }
     }
 };
 
@@ -27,7 +32,7 @@ $("form").on('submit', function(event) {
             $("#scores-9").val()
         ]
     };
-    cleanForm(newFriend);
+    cleanForm();
     console.log($("#scores-1").val())
     console.log(newFriend);
     $.ajax({
