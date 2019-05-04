@@ -1,0 +1,67 @@
+body, html {
+ height: 100%;
+}
+
+#bg-image {
+    z-index: 1;
+    background-image: url('../imgs/helena-lopes.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
+    height: 100%;
+}
+
+.container {
+    position: absolute;
+    top: 0%;
+    left: 20%;
+    z-index: 2;
+    width: 60%;
+}
+
+.header {
+    margin-top: 160px;
+    padding: 20px 0px 20px 0px;
+    display: inline;
+    text-align: center;
+    background-color: rgba(0,0,0, 0.6);  
+    color: rgb(0, 145, 237);  
+    border-bottom: 2px solid black;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.description {
+    padding: 30px 10px 0px 10px;
+    text-align: center;
+    background-color: rgba(0,0,0, 0.4);
+    color: rgb(85, 178, 237);    
+    font-weight: bold;
+}
+
+.button {
+    padding: 30px;
+    text-align: center;
+    background-color: rgba(0,0,0, 0.4);    
+    border-radius: 0px 0px 10px 10px;
+}
+
+#get-started {
+    border-radius: 3px;
+    border: none;
+    background: rgb(245, 199, 99, 0.8);
+    padding: 15px;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 1000px) {
+    .fa-7x {
+        font-size: 3em;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .container {
+        width: 100%;
+        left: 0%;
+    }
+}
