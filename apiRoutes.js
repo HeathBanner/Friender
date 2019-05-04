@@ -5,7 +5,6 @@ var app = express()
 module.exports = {
     get: function(app, friends) {
         app.get("/api/friends", function(req, res) {
-            console.log("GET")
             res.send(friends);
         });        
     },
@@ -40,10 +39,6 @@ module.exports = {
                     winner = friendScores[buddy].name;
                 };
             };
-            console.log(friendScores);
-            console.log("WINNER IS: " + winner)
-            
-            console.log("Inserting " + newFriend.name + " in to database..." );
             res.json(winner);
             res.end()
         });

@@ -6,8 +6,6 @@ function cleanForm() {
 
 $("form").on('submit', function(event) {
     event.preventDefault();
-    console.log("WOOH")
-
     var newFriend = {
         name: $("#name").val(),
         photo: $("#photo").val(),
@@ -25,14 +23,11 @@ $("form").on('submit', function(event) {
         ]
     };
     cleanForm();
-    console.log($("#scores-1").val())
-    console.log(newFriend);
     $.ajax({
         url: "/api/friends",
         method: "POST",
         data: newFriend,
     }).then(function(res) {
-        console.log(res);
         $("#modal-box").show();
         $("#friend-match").text(res)
     });

@@ -5,7 +5,6 @@ var app = express();
 module.exports = { 
     home: function(app){
             app.get("/", function(req, res) {
-                console.log(req.body);
                 res.sendFile(path.join(__dirname, "index.html"));
             })
             },
