@@ -1,5 +1,11 @@
 
-var test;
+function cleanForm(newFriend) {
+    $("#name").val("");
+    $("#photo").val("");
+    for (var i in newFriend.scores) {
+        $("#scores-" + i).val("");
+    }
+};
 
 $("form").on('submit', function(event) {
     event.preventDefault();
@@ -21,7 +27,7 @@ $("form").on('submit', function(event) {
             $("#scores-9").val()
         ]
     };
-
+    cleanForm(newFriend);
     console.log($("#scores-1").val())
     console.log(newFriend);
     $.ajax({
