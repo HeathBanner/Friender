@@ -37,7 +37,7 @@ module.exports = {
                 if (friendScores[buddy].score < winnerScore) {
                     winnerScore = friendScores[buddy].score;
                     winner.push(friendScores[buddy].name);
-                    winner.push(newFriend.photo);
+                    winner.push(friends[buddy].photo);
                 }
             }
             res.json(winner);
