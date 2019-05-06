@@ -1,6 +1,6 @@
 var express = require('express');
-var path = require('path')
-var app = express()
+var path = require('path');
+var app = express();
 
 module.exports = {
     get: function(app, friends) {
@@ -11,9 +11,10 @@ module.exports = {
     post: function(app, friends) {
         app.post("/api/friends", function(req, res) {
             var newFriend = req.body;
-            var friendScores = []
+            friends.push(newFriend);
+            var friendScores = [];
             var winnerScore = 50;
-            var winner;
+            var winner = [];
             function FriendScore(name) {
                 this.name = name
                 this.score;
@@ -22,8 +23,7 @@ module.exports = {
             newFriend.name = newFriend.name.replace(/\s+/g, "").toLowerCase();
             for (var index in newFriend.scores) {
                 newFriend.scores[index] = parseInt(newFriend.scores[index])
-            };
-
+            }
             for (var buddy in friends) {
                 friendScores[buddy] = new FriendScore(friends[buddy].name)
                 for (var num in friends[0].scores) {
@@ -33,14 +33,15 @@ module.exports = {
                     } else {
                         friendScores[buddy].score += friends[buddy].scores[num] % newFriend.scores[num]
                     }
-                };
+                }
                 if (friendScores[buddy].score < winnerScore) {
                     winnerScore = friendScores[buddy].score;
-                    winner = friendScores[buddy].name;
-                };
-            };
+                    winner.push(friendScores[buddy].name);
+                    winner.push(newFriend.photo);
+                }
+            }
             res.json(winner);
-            res.end()
+            res.end();
         });
     }
 };

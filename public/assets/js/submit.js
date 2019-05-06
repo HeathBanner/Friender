@@ -29,7 +29,8 @@ $("form").on('submit', function(event) {
         data: newFriend,
     }).then(function(res) {
         $("#modal-box").show();
-        $("#friend-match").text(res)
+        $("#friend-match").text(res[0]);
+        $(".modal-content").append('<img id="profilePic" src="' + res[1] + '">')
     });
 })
 
