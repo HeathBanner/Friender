@@ -11,35 +11,33 @@ module.exports = {
     post: function(app, friends) {
         app.post("/api/friends", function(req, res) {
             var newFriend = req.body;
-            friends.push(newFriend);
             var friendScores = [];
-            var winnerScore = 50;
-            var winner = [];
-            function FriendScore(name) {
-                this.name = name
-                this.score;
-            };
-        
+            var newFriendScore;
+            var winnerLog = [];
             newFriend.name = newFriend.name.replace(/\s+/g, "").toLowerCase();
-            for (var index in newFriend.scores) {
-                newFriend.scores[index] = parseInt(newFriend.scores[index])
+            
+             for (var index in newFriend.scores) {
+                if(typeof newFriendScore == 'undefined') {
+                    newFriendScore = parseInt(newFriend.scores[index]);
+                } else {
+                    newFriendScore += parseInt(newFriend.scores[index])
+                }
             }
             for (var buddy in friends) {
-                friendScores[buddy] = new FriendScore(friends[buddy].name)
+                var score = 0
                 for (var num in friends[0].scores) {
-                    
-                    if(typeof friendScores[buddy].score == 'undefined') {
-                        friendScores[buddy].score = friends[buddy].scores[num] % newFriend.scores[num]
-                    } else {
-                        friendScores[buddy].score += friends[buddy].scores[num] % newFriend.scores[num]
-                    }
+                    score += parseInt(friends[buddy].scores[num]);
                 }
-                if (friendScores[buddy].score < winnerScore) {
-                    winnerScore = friendScores[buddy].score;
-                    winner.push(friendScores[buddy].name);
-                    winner.push(friends[buddy].photo);
-                }
+                friendScores.push(score);
+                winnerLog.push(Math.abs(newFriendScore - friendScores[buddy]));
             }
+            var winnerVal = Math.min.apply(null, winnerLog);
+            var winnerIndex = winnerLog.indexOf(winnerVal);
+            var winner = {
+                name: friends[winnerIndex].name,
+                photo: friends[winnerIndex].photo
+            };
+            friends.push(newFriend);
             res.json(winner);
             res.end();
         });

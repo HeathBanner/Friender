@@ -6,32 +6,17 @@ function cleanForm() {
 
 $("form").on('submit', function(event) {
     event.preventDefault();
-    var newFriend = {
-        name: $("#name").val(),
-        photo: $("#photo").val(),
-        scores: [
-            $("#scores-1").val(),
-            $("#scores-1").val(),
-            $("#scores-2").val(),
-            $("#scores-3").val(),
-            $("#scores-4").val(),
-            $("#scores-5").val(),
-            $("#scores-6").val(),
-            $("#scores-7").val(),
-            $("#scores-8").val(),
-            $("#scores-9").val()
-        ]
-    };
-    cleanForm();
+    var values = $(this).serialize();
     $.ajax({
-        url: "/api/friends",
-        method: "POST",
-        data: newFriend,
+        url: '/api/friends',
+        method: 'POST',
+        data: values
     }).then(function(res) {
         $("#modal-box").show();
-        $("#friend-match").text(res[0]);
-        $(".modal-content").append('<img id="profilePic" src="' + res[1] + '">')
-    });
+        $("#friend-match").text(res.name);
+        $(".modal-content").append('<img id="profilePic" src="' + res.photo + '">')
+    })
+    cleanForm();
 })
 
 $("#close").on("click", function() {
